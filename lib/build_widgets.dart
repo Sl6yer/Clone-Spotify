@@ -67,3 +67,24 @@ Widget buildSliver(String text) {
     ),
   );
 }
+
+Widget buildAddAccountRow(String text, IconData icon) {
+  return Row(
+    children: [
+      Icon(
+        icon,
+        color: Colors.white,
+      ),
+      SizedBox(
+        width: 10,
+      ),
+      Text(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 15.0,
+        ),
+      ),
+    ],
+  );
+}

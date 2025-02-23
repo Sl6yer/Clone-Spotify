@@ -1,8 +1,18 @@
+import 'package:clone_spotify/custom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'config_page.dart';
 import 'build_widgets.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor:
+        Colors.black, // Cor de fundo da barra de navegação
+    systemNavigationBarIconBrightness:
+        Brightness.light, // Cor dos ícones na barra
+  ));
+
   runApp(MaterialApp(
     home: Home(),
   ));
@@ -16,18 +26,31 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int myIndex = 0;
-
   int _selectedButton = -1;
+
+  final _pageController = PageController();
+
+  int _selectIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Página 1: Home'),
+    Text('Página 2: Pesquisa'),
+    Text('Página 3: Perfil'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(
+        pageController: _pageController,
+      ),
       extendBody: true,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: 0,
+            iconTheme: IconThemeData(
+              color: Colors.transparent,
+            ),
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.only(
                 left: 16,
@@ -220,32 +243,39 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
+      bottomNavigationBar: GNav(
+        activeColor: Colors.white,
+        tabActiveBorder: Border.all(color: Colors.white, width: 1),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        tabBackgroundColor: Colors.black,
+        selectedIndex: _selectIndex,
+        onTabChange: (index) {
           setState(() {
-            myIndex = index;
+            _selectIndex = index;
           });
         },
-        currentIndex: myIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+        tabs: const [
+          GButton(
+            icon: Icons.home,
+            text: 'Inicio',
+            iconColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+          GButton(
+            icon: Icons.search,
+            text: 'Buscar',
+            iconColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            label: 'Library',
+          GButton(
+            icon: Icons.collections,
+            text: 'Blibioteca',
+            iconColor: Colors.white,
+          ),
+          GButton(
+            icon: Icons.music_note,
+            text: 'Premium',
+            iconColor: Colors.white,
           ),
         ],
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        unselectedItemColor: const Color.fromARGB(204, 255, 255, 255),
-        selectedItemColor: Colors.white,
-        iconSize: 30,
       ),
       backgroundColor: Color.fromRGBO(15, 15, 15, 1),
     );
