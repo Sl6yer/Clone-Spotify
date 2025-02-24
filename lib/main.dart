@@ -1,9 +1,11 @@
-import 'package:clone_spotify/custom_drawer.dart';
+import 'package:clone_spotify/pages/blibioteca_page.dart';
+import 'package:clone_spotify/pages/premium_page.dart';
+import 'package:clone_spotify/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'config_page.dart';
-import 'build_widgets.dart';
+import 'widgets/build_widgets.dart';
+import 'package:clone_spotify/pages/search_page.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -31,20 +33,10 @@ class _HomeState extends State<Home> {
   final _pageController = PageController();
 
   int _selectIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Página 1: Home'),
-    Text('Página 2: Pesquisa'),
-    Text('Página 3: Perfil'),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: CustomDrawer(
-        pageController: _pageController,
-      ),
-      extendBody: true,
-      body: CustomScrollView(
+    final List<Widget> _pages = [
+      CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: 0,
@@ -242,6 +234,20 @@ class _HomeState extends State<Home> {
             ),
           ),
         ],
+      ),
+      SearchPage(),
+      BlibiotecaPage(),
+      PremiumPage(),
+    ];
+
+    return Scaffold(
+      drawer: CustomDrawer(
+        pageController: _pageController,
+      ),
+      extendBody: true,
+      body: IndexedStack(
+        index: _selectIndex,
+        children: _pages,
       ),
       bottomNavigationBar: GNav(
         activeColor: Colors.white,
