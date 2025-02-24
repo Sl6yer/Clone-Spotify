@@ -52,6 +52,51 @@ Widget buildCard(String text, String imagePath) {
   );
 }
 
+Widget buildCardSearch(String text1, Color color1, String text2, Color color2) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      SizedBox(
+        width: 170,
+        height: 90,
+        child: Card(
+          color: color1,
+          child: Center(
+            child: Text(
+              text1,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'CircularSpotifyText',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ),
+          ),
+        ),
+      ),
+      SizedBox(
+        width: 10,
+      ),
+      SizedBox(
+        width: 170,
+        height: 90,
+        child: Card(
+          color: color2,
+          child: Center(
+            child: Text(
+              text2,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'CircularSpotifyText',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 Widget buildSliver(String text) {
   return SliverToBoxAdapter(
     child: Padding(
