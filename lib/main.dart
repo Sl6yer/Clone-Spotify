@@ -3,6 +3,7 @@ import 'package:clone_spotify/pages/premium_page.dart';
 import 'package:clone_spotify/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'widgets/build_widgets.dart';
 import 'package:clone_spotify/pages/search_page.dart';
@@ -277,7 +278,7 @@ class _HomeState extends State<Home> {
             iconColor: Colors.white,
           ),
           GButton(
-            icon: Icons.music_note,
+            icon: FontAwesomeIcons.spotify,
             text: 'Premium',
             iconColor: Colors.white,
           ),

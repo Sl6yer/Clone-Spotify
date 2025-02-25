@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget buildAlbumCard(String imagePath, String title) {
   return Column(
@@ -21,6 +22,74 @@ Widget buildAlbumCard(String imagePath, String title) {
           color: Colors.white,
           fontSize: 14,
         ),
+      ),
+    ],
+  );
+}
+
+Widget buildAlbumBlibioteca(String imagePath, String title, String subtitle) {
+  return SliverToBoxAdapter(
+    child: Padding(
+      padding: EdgeInsets.only(bottom: 12.0),
+      child: Row(
+        children: [
+          Image.asset(
+            imagePath,
+            height: 70,
+            width: 100,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'CircularSpotifyText',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17.0,
+                ),
+              ),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'CircularSpotifyText',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget buildBottomShet(Widget icon, String title, String subtitle) {
+  return Row(
+    children: [
+      icon, // ✅ Agora o widget é usado corretamente
+      SizedBox(width: 15.0),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'CircularSpotifyText',
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+            ),
+          ),
+          Text(
+            subtitle,
+            style: TextStyle(
+              color: Colors.grey[500],
+            ),
+          ),
+        ],
       ),
     ],
   );

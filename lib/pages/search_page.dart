@@ -52,7 +52,7 @@ class SearchPage extends StatelessWidget {
                   onPressed: () => _takePicture(context),
                   icon: Icon(Icons.camera_alt),
                   color: Colors.white,
-                )
+                ),
               ],
             ),
           ),
